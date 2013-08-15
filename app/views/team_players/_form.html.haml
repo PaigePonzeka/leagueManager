@@ -1,0 +1,17 @@
+= form_for(@team_player) do |f|
+  - if @team_player.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@team_player.errors.count, "error")
+        prohibited this team_player from being saved:
+      %ul
+        - @team_player.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :player_id
+    = collection_select(:team_player, :player_id, Player.all, :id, :name)
+  .field
+    = f.label :team_id
+    = collection_select(:team_player, :team_id, Team.all, :id, :name)
+  .actions
+    = f.submit

@@ -1,0 +1,12 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @team.name
+%p
+  %b Team Roster:
+  %ul
+    - @players.each do |p|
+      %li= p.player.name
+= link_to 'Edit', edit_team_path(@team)
+|
+\#{link_to 'Back', teams_path}
