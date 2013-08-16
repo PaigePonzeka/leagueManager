@@ -25,7 +25,10 @@ class PlayersController < ApplicationController
   # GET /players/new.json
   def new
     @player = Player.new
-
+    if @player.save
+      flash[:success] = "Welcome to the BASL!"
+      redirect_to @player
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @player }

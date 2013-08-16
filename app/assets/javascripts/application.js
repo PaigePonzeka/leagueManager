@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+//Javascripts (https://github.com/thomas-mcdonald/bootstrap-sass)
+
+//ou can include the Bootstrap javascripts through two methods. In this case, Sprocket's //= require directives are useful, since there is no better alternative.
+
+// We have a helper that includes all available javascripts:
+
+// // Loads all Bootstrap javascripts
+// //= require bootstrap
+// You can also load individual modules, provided you sort out any related dependencies.
+
+// //= require bootstrap-scrollspy
+// //= require bootstrap-modal
+// //= require bootstrap-dropdown
+// Simples.
