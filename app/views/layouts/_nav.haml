@@ -1,0 +1,20 @@
+%header.navbar
+  .navbar-inner
+    .container
+      = link_to "sample app", "#", id: "logo"
+      %nav
+        %ul.nav.pull-right
+          %li= link_to "Home", "#"
+          - if signed_in?
+            %li#fat-menu.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Account
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Profile", current_player
+                %li= link_to "Settings", '#'
+                %li.divider
+                %li
+                  = link_to "Sign out", signout_path, method: "delete"
+          - else
+            %li.test= link_to "Sign in", signin_path

@@ -21,6 +21,7 @@ class PlayersController < ApplicationController
     end
   end
 
+  
   # GET /players/new
   # GET /players/new.json
   def new

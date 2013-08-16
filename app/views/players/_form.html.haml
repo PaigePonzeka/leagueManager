@@ -1,0 +1,30 @@
+= form_for(@player, :html => {:class => "form-horizontal"}) do |f|
+  - if @player.errors.any?
+    #error_explanation
+      %ul.alert.alert-error
+        - @player.errors.full_messages.each do |msg|
+          %li= msg
+  .control-group
+    = f.label :name, :class => "control-label"
+    .controls
+      = f.text_field :name
+  .control-group
+    = f.label :email, :class => "control-label"
+    .controls
+      = f.text_field :email
+  .control-group
+    = f.label :password, :class => "control-label"
+    .controls
+      = f.password_field :password
+  .control-group
+    = f.label :password_confirmation, :class => "control-label"
+    .controls
+      = f.password_field :password_confirmation      
+  .control-group
+    .controls
+      = f.submit(:class => "btn btn-primary btn-large", :value=> "Create My Account")
+  .control-group
+    .controls
+      %small
+        Already a Member? 
+        =link_to("Login", "#")
