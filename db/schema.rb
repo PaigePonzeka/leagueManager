@@ -13,19 +13,8 @@
 
 ActiveRecord::Schema.define(:version => 20130816034656) do
 
-  create_table "players", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "remember_token"
-  end
-
-  add_index "players", ["remember_token"], :name => "index_players_on_remember_token"
-
   create_table "team_players", :force => true do |t|
-    t.integer  "player_id"
+    t.integer  "user_id"
     t.integer  "team_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -36,5 +25,16 @@ ActiveRecord::Schema.define(:version => 20130816034656) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_token"
+  end
+
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

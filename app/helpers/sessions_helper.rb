@@ -1,9 +1,9 @@
 module SessionsHelper
 
   def sign_in(player)
-    remember_token = Player.new_remember_token
+    remember_token = User.new_remember_token
     cookies.permanent[:remember_token] = remember_token
-    player.update_attribute(:remember_token, Player.encrypt(remember_token))
+    player.update_attribute(:remember_token, User.encrypt(remember_token))
     self.current_player = player
   end
 
@@ -12,8 +12,8 @@ module SessionsHelper
   end
 
    def current_player
-    remember_token = Player.encrypt(cookies[:remember_token])
-    @current_player ||= Player.find_by_remember_token(remember_token)
+    remember_token = User.encrypt(cookies[:remember_token])
+    @current_player ||= User.find_by_remember_token(remember_token)
   end
 
   def signed_in?

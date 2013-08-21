@@ -25,7 +25,7 @@ class TeamPlayersController < ApplicationController
   # GET /team_players/new.json
   def new
     @team_player = TeamPlayer.new
-    @players = Player.all
+    @players = User.all
     @teams = Team.all
     respond_to do |format|
       format.html # new.html.erb
