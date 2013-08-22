@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = User.all
+    @users= User.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @players }
+      format.json { render json: @users }
     end
   end
 
@@ -38,17 +38,21 @@ class UsersController < ApplicationController
 
   # GET /players/1/edit
   def edit
-    @player = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   # POST /players
   # POST /players.json
   def create
     @user = User.new(params[:user])
+    #set default permission level
+    @user.permission = 0
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        sign_in @user
+        flash[:success] = "Welcome to the Sample App!"
+        redirect_to @user
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -60,15 +64,15 @@ class UsersController < ApplicationController
   # PUT /players/1
   # PUT /players/1.json
   def update
-    @player = User.find(params[:id])
+    @user= User.find(params[:id])
 
     respond_to do |format|
-      if @player.update_attributes(params[:player])
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+      if @user.update_attributes(params[:player])
+        format.html { redirect_to @player, notice: 'Userwas successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,8 +80,8 @@ class UsersController < ApplicationController
   # DELETE /players/1
   # DELETE /players/1.json
   def destroy
-    @player = User.find(params[:id])
-    @player.destroy
+    @user = User.find(params[:id])
+    @user.destroy
 
     respond_to do |format|
       format.html { redirect_to users_url }

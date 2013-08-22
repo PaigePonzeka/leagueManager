@@ -1,1 +1,18 @@
-%h1 StaticPages#home
+
+-if signed_in?
+  %h1 
+    Welcome 
+    = current_user.name
+  -if is_admin?
+    %ul.admin-actions
+      %li
+        = link_to "Manage Users", users_path
+-else
+  %h1 
+    Welcome User
+  
+  =link_to "Login", signin_path
+  %small
+    New User? 
+    =link_to "Sign up", new_user_path
+
