@@ -15,7 +15,7 @@
   .control-group
     = f.label :permission ,:class => "control-label"
     .controls 
-      = select_tag(:permissions, options_for_select(@user_permissions))
+      = select_tag(:permissions, options_for_select(@user_permissions, @user.permission))
   -# .control-group
     = f.label :password, :class => "control-label"
     .controls
