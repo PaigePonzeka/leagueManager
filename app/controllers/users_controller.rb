@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   # GET /players/1/edit
   def edit
     @user = User.find(params[:id])
+    @user_permissions = [["User" ,  0], ["Manager", 1], ["Admin", 2]]
   end
 
   # POST /players

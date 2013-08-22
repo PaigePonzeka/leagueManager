@@ -8,10 +8,10 @@
   - @users.each do |user|
     %tr
       %td= user.name
-      %td= link_to 'Show', user
+      %td= link_to 'Show', user, {:class => "icon icon-eye-open"}
      
       - if is_admin?
-        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Edit', edit_user_path(user),  {:class => "icon icon-edit"}
         %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
 = link_to 'New User', new_user_path

@@ -14,8 +14,8 @@
       = f.text_field :email
   .control-group
     = f.label :permission ,:class => "control-label"
-    .controls
-      =f.number_field :permission
+    .controls 
+      = select_tag(:permissions, options_for_select(@user_permissions))
   -# .control-group
     = f.label :password, :class => "control-label"
     .controls
