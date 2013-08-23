@@ -1,5 +1,5 @@
 %h1 Users
-%table
+%table.table.list-table.table-striped
   %tr
     %th Name
     %th
@@ -7,7 +7,7 @@
     %th
   - @users.each do |user|
     %tr
-      %td= user.name
+      %td= name(user)
       %td= link_to 'Show', user, {:class => "icon icon-eye-open"}
      
       - if is_admin?

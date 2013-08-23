@@ -3,7 +3,7 @@
     .container
       %nav
         %ul.nav.pull-right
-          %li= link_to "Home", "#"
+          %li= link_to "Home", root_path
           - if signed_in?
             %li#fat-menu.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

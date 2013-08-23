@@ -6,7 +6,10 @@
   %b Team Roster:
   %ul
     - @players.each do |p|
-      %li= p.player.name
-= link_to 'Edit', edit_team_path(@team)
-|
+      %li
+        = link_to 'Show', p.user, {:class => "icon icon-eye-open"}
+        = name(p.user)
+
+  = link_to 'Edit', edit_team_path(@team)
+  |
 \#{link_to 'Back', teams_path}

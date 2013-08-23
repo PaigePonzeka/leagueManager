@@ -1,0 +1,12 @@
+%p#notice= notice
+%h1
+  = name(@user)
+  -if is_admin?
+    = link_to 'Edit', edit_user_path(@user),  {:class => "icon icon-edit"}
+
+%ul.user-teams
+  - @teams.each do |t|
+    %li=t.team.name
+
+
+\#{link_to 'Back', users_path}

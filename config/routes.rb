@@ -5,7 +5,7 @@ LeagueManager::Application.routes.draw do
 
   #get "users/new"
 
-resources :team_players
+#resources :team_players
 resources :teams
 #resources :players
 resources :users

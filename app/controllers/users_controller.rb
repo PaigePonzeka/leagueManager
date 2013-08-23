@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  #before_action :signed_in_user, only: [:edit, :update]
+  #before_action :correct_user,   only: [:edit, :update]
+  before_filter :require_admin_or_correct_user, :only => [:edit, :update]
+  before_filter :require_login, :only => [:index, :show]
+  before_filter :require_admin, :only  => [:new, :destroy]
+
   # GET /players
   # GET /players.json
   def index
@@ -14,7 +20,7 @@ class UsersController < ApplicationController
   # GET /players/1.json
   def show
     @user = User.find(params[:id])
-
+    @teams = TeamPlayer.where(:user_id => params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -69,7 +75,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:player])
-        format.html { redirect_to @player, notice: 'Userwas successfully updated.' }
+        format.html { redirect_to @player, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -89,4 +95,28 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
+
+
+# private
+
+     def user_params
+       params.require(:user).permit(:name, :email, :password,
+                                    :password_confirmation)
+      end
+
+#     # Before filters
+
+#     def signed_in_user
+#       unless signed_in?
+#         store_location
+#         redirect_to signin_url, notice: "Please sign in."
+#       end
+#     end
+
+     def require_admin_or_correct_user
+       @user = User.find(params[:id])
+        flash[:error] = "Access Denied"
+       redirect_to(root_url) unless  (current_user.id == @user.id || is_admin?)
+     end
+
+end 
