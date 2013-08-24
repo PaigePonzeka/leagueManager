@@ -45,11 +45,11 @@ class TeamPlayersController < ApplicationController
 
     respond_to do |format|
       if @team_player.save
-        format.html { redirect_to @team_player, notice: 'Team player was successfully created.' }
+       format.html { redirect_to @team_player, notice: 'Team player was successfully created.' }
         format.json { render json: @team_player, status: :created, location: @team_player }
       else
-        format.html { render action: "new" }
-        format.json { render json: @team_player.errors, status: :unprocessable_entity }
+       format.html { render action: "new" }
+       format.json { render json: @team_player.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,6 +70,7 @@ class TeamPlayersController < ApplicationController
     end
   end
 
+
   # DELETE /team_players/1
   # DELETE /team_players/1.json
   def destroy
@@ -77,7 +78,7 @@ class TeamPlayersController < ApplicationController
     @team_player.destroy
 
     respond_to do |format|
-      format.html { redirect_to team_players_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

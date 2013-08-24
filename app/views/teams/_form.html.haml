@@ -11,5 +11,12 @@
     = f.label :name
     %br/
     = f.text_field :name
+  .field
+    %ul
+      -@players.each do |p|
+        %li
+          =name(p.user)
+          = link_to "delete", p, method: :delete,
+                                     data: { confirm: "You sure?" }
   .actions
     = f.submit
