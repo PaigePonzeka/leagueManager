@@ -1,7 +1,8 @@
 %p#notice= notice
-%p
-  %b Name:
+%h1
   = @team.name
+  - if correct_manager(@team)
+    = link_to 'Edit', edit_team_path(@team), {:class => "icon icon-edit"}
 %p
   %b Team Roster:
   %ul
@@ -9,7 +10,9 @@
       %li
         = link_to 'Show', p.user, {:class => "icon icon-eye-open"}
         = name(p.user)
+        - if correct_manager(@team)
+          = link_to "Remove", "#", { :method => :delete, :confirm => "Delete this image?", :class=> 'js-remove-player', 'data-team' => @team.id, 'data-player' =>p.user.id}
 
-  = link_to 'Edit', edit_team_path(@team)
-  |
+       
+
 \#{link_to 'Back', teams_path}

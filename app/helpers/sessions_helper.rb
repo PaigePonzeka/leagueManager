@@ -24,6 +24,14 @@ module SessionsHelper
     signed_in? && current_user.permission == 2
   end
 
+  def is_manager?
+    teamsManaged.size > 0
+  end
+
+  def teamsManaged
+    teams =  TeamManager.where(:user_id => current_user.id)
+  end
+
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
@@ -50,4 +58,6 @@ module SessionsHelper
   def username
     "#{current_user.first_name} #{current_user.last_name}"
   end
+
+
 end

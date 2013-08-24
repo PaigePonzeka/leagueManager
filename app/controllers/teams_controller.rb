@@ -1,4 +1,7 @@
 class TeamsController < ApplicationController
+  before_filter :require_admin_or_correct_manager, :only => [:edit, :update]
+  before_filter :require_login, :only => [ :show]
+  before_filter :require_admin, :only  => [:new, :destroy]
   # GET /teams
   # GET /teams.json
   def index
@@ -35,6 +38,7 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @team = Team.find(params[:id])
+    @players = TeamPlayer.where(:team_id => params[:id])
   end
 
   # POST /teams
@@ -80,4 +84,10 @@ class TeamsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+   def require_admin_or_correct_manager
+      @team = Team.find(params[:id])
+       redirect_to(root_url) unless  (correct_manager(@team) || is_admin?)
+     end
 end

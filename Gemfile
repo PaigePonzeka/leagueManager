@@ -26,6 +26,7 @@ end
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.1.2'
+gem "formtastic"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

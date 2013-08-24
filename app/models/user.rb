@@ -12,8 +12,11 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
  
-  has_one :team
+  #has_one :team
+  has_many :team_players
   has_many :teams, :through => :team_players
+  has_many :team_managers
+  has_many :teams, :through => :team_managers
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

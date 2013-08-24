@@ -22,4 +22,10 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+  
+  def correct_manager(team)
+      teams = TeamManager.where(:user_id => current_user.id, :team_id => team.id)
+      teams.length > 0
+    end
+  
 end
