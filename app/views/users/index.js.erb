@@ -1,0 +1,4 @@
+<% if @users.any? %>
+//console.log(@users);
+  $("#available-users").append('<%= escape_javascript("AVAILABLE")%>');
+<% end %>

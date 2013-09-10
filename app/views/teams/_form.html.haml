@@ -12,7 +12,7 @@
     %br/
     = f.text_field :name
   .field
-    %ul#team-players.update-container
+    %ul#team-players
       -@players.each do |p|
         %li
           =name(p.user)
@@ -26,3 +26,9 @@
   =t.hidden_field :team_id, :value => @team.id
   =t.number_field :user_id
   =t.submit
+
+
+#available-users
+=form_tag users_path, :method => 'get', :remote => true do
+  = text_field_tag :search, params[:search] 
+  = submit_tag "Search", :name => nil 

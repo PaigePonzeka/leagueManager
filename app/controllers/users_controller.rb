@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @users= User.all
-
+    @users= User.where("email like '%#{params[:search]}%'").all
     respond_to do |format|
       format.html # index.html.erb
+      format.js { render :layout=>false }
       format.json { render json: @users }
     end
   end

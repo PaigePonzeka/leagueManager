@@ -8,7 +8,7 @@ LeagueManager::Application.routes.draw do
 resources :team_players, only: [:new, :create, :destroy]
 resources :teams
 #resources :players
-resources :users
+resources :users 
 resources :sessions, only: [:new, :create, :destroy]
 root :to => 'StaticPages#home'
 
@@ -18,7 +18,6 @@ match '/help',    to: 'static_pages#help',    via: 'get'
 #match '/contact', to: 'static_pages#contact', via: 'get'
 match '/signin',  to: 'sessions#new',         via: 'get'
 match '/signout', to: 'sessions#destroy',     via: 'delete'
-
 
 
   # The priority is based upon order of creation:
