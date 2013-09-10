@@ -29,6 +29,7 @@ class TeamPlayersController < ApplicationController
     @teams = Team.all
     respond_to do |format|
       format.html # new.html.erb
+      format.js   {redirect_to :back}
       format.json { render json: @team_player }
     end
   end
@@ -45,8 +46,12 @@ class TeamPlayersController < ApplicationController
 
     respond_to do |format|
       if @team_player.save
-       format.html { redirect_to @team_player, notice: 'Team player was successfully created.' }
-        format.json { render json: @team_player, status: :created, location: @team_player }
+        flash[:notice] = "Player Created" 
+        format.html { redirect_to @team_player, notice: 'Team player was successfully created.' }
+        format.js { render :layout=>false }
+        format.json {redirect_to :back}
+        #format.json { render json: @team_player, status: :created, location: @team_player }
+        
       else
        format.html { render action: "new" }
        format.json { render json: @team_player.errors, status: :unprocessable_entity }
@@ -62,7 +67,8 @@ class TeamPlayersController < ApplicationController
     respond_to do |format|
       if @team_player.update_attributes(params[:team_player])
         format.html { redirect_to @team_player, notice: 'Team player was successfully updated.' }
-        format.json { head :no_content }
+        format.js   {redirect_to :back}
+        format.json { head :no_content}
       else
         format.html { render action: "edit" }
         format.json { render json: @team_player.errors, status: :unprocessable_entity }
