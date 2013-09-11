@@ -24,11 +24,13 @@
 
 =form_for(@team.team_players.build(team_id: @team.id), remote: true, 'data-update-target' => 'update-container') do |t|
   =t.hidden_field :team_id, :value => @team.id
-  =t.number_field :user_id
-  =t.submit
+  #available-users-results
+  =t.select :user_id, options_for_select([]), {}, { :class => 'js-available-users' , :size => 5}
+  =t.submit "Add Player To Roster", :class => "btn btn-info"
 
 
-#available-users
-=form_tag users_path, :method => 'get', :remote => true do
-  = text_field_tag :search, params[:search] 
-  = submit_tag "Search", :name => nil 
+
+-#%select#available-users{:size => 5}
+=form_tag users_path, :method => 'get', :remote => true, :class =>"form-search" do
+  = text_field_tag :search, params[:search], :placeholder => "Enter Player Email Here" 
+  = submit_tag "Find Player", :name => nil, :class => 'btn'

@@ -1,4 +1,17 @@
+var $usersContainer = $(".js-available-users");
+var $usersResultsContainer = $("#available-users-results");
+resetSearch();
+
 <% if @users.any? %>
-//console.log(@users);
-  $("#available-users").append('<%= escape_javascript("AVAILABLE")%>');
+  $usersResultsContainer.append("<%=@users.count %> User(s) Found" );
+  <% @users.each do |user| %>
+    $usersContainer.append("<option value=<%=user.id%>><%=name(user) %> <%=user.email %><li>");
+  <% end %>
+<%else%>
+  $usersResultsContainer.html("No Users Found"); 
 <% end %>
+
+function resetSearch(){
+  $usersContainer.html("");
+  $usersResultsContainer.html("");
+}
