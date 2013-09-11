@@ -7,11 +7,10 @@
     %th
   - @users.each do |user|
     %tr
-      %td= name(user)
-      %td= link_to 'Show', user, {:class => "icon icon-eye-open"}
+      %td= link_to "#{name(user)}", user
      
       - if is_admin?
-        %td= link_to 'Edit', edit_user_path(user),  {:class => "icon icon-edit"}
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to '', edit_user_path(user),  {:class => "icon-edit"}
+        %td= link_to '', user, method: :delete , data: { confirm: 'Are you sure?' }, :class => "icon-remove"
 %br/
 = link_to 'New User', new_user_path
