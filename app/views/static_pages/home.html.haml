@@ -7,6 +7,7 @@
     %li= link_to "View Divisions", divisions_path 
     -if is_admin?
       %li= link_to "Manage Users", users_path
+      %li= link_to "Manage Division Reps", division_reps_path
       %li= link_to "Manage Teams", teams_path
     
     - if  is_manager?

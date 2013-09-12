@@ -1,4 +1,5 @@
 class DivisionRepsController < ApplicationController
+  before_filter :require_admin, :only  => [:new, :destroy, :edit, :update]
   # GET /division_reps
   # GET /division_reps.json
   def index

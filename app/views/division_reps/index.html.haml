@@ -1,21 +1,15 @@
-%h1 Listing division_reps
+%h1 Division Reps
 
-%table
+%table.table.list-table
   %tr
     %th Division
-    %th User
-    %th
-    %th
-    %th
+    %th Division Representative
 
   - @division_reps.each do |division_rep|
     %tr
-      %td= division_rep.division_id
-      %td= division_rep.user_id
-      %td= link_to 'Show', division_rep
-      %td= link_to 'Edit', edit_division_rep_path(division_rep)
-      %td= link_to 'Destroy', division_rep, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to "#{division_rep.division.name}", division_rep.division
+      %td= link_to "#{name(division_rep.user)}", division_rep.user 
+      %td=# link_to 'Destroy', division_rep, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Division rep', new_division_rep_path
+-if is_admin?
+  = link_to 'Add Division Representative', new_division_rep_path, :class => "btn btn-primary"
