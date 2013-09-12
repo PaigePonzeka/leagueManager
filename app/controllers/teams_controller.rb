@@ -88,6 +88,11 @@ class TeamsController < ApplicationController
 
    def require_admin_or_correct_manager
       @team = Team.find(params[:id])
-       redirect_to(root_url) unless  (correct_manager(@team) || is_admin?)
+       redirect_to(root_url) unless  (user_is_team_manager(@team) || is_admin?)
      end
+
+      def user_is_team_manager(team)
+      teams = TeamManager.where(:user_id => current_user.id, :team_id => team.id)
+      teams.length > 0
+  end
 end

@@ -1,4 +1,7 @@
 LeagueManager::Application.routes.draw do
+  resources :team_divisions
+
+
   resources :divisions
 
 

@@ -1,9 +1,16 @@
 %p#notice= notice
 
-%p
-  %b Name:
+%h1
   = @division.name
+  -if is_admin?
+    = link_to '', edit_division_path(@division), {:class => "icon icon-edit"}
 
-= link_to 'Edit', edit_division_path(@division)
-\|
+%table.table.table-striped.list-table
+  %th Teams
+  %th
+  -@division.teams.each do |team|
+    %tr
+      %td= link_to "#{team.name}", team
+      
+
 = link_to 'Back', divisions_path

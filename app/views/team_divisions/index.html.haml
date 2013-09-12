@@ -1,0 +1,21 @@
+%h1 Listing team_divisions
+
+%table
+  %tr
+    %th Team
+    %th Division
+    %th
+    %th
+    %th
+
+  - @team_divisions.each do |team_division|
+    %tr
+      %td= team_division.team_id
+      %td= team_division.division_id
+      %td= link_to 'Show', team_division
+      %td= link_to 'Edit', edit_team_division_path(team_division)
+      %td= link_to 'Destroy', team_division, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Team division', new_team_division_path

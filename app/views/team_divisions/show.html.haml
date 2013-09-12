@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Team:
+  = @team_division.team_id
+%p
+  %b Division:
+  = @team_division.division_id
+
+= link_to 'Edit', edit_team_division_path(@team_division)
+\|
+= link_to 'Back', team_divisions_path

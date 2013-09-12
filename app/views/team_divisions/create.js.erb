@@ -1,0 +1,4 @@
+<% if @team_division.errors.any? %>
+<% else %>
+  $("#team-divisions").append('<%= escape_javascript("Team Added: #{@team_division.team.name}")%>');
+<% end %>

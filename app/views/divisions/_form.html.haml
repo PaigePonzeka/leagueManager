@@ -1,13 +1,34 @@
-= form_for @division do |f|
+
+= form_for(@division, :html => {:class => "form-horizontal"}) do |f|
   - if @division.errors.any?
     #error_explanation
       %h2= "#{pluralize(@division.errors.count, "error")} prohibited this division from being saved:"
       %ul
         - @division.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
+  .control-group
+    = f.label :name, :class => "control-label"
+    .controls
+      = f.text_field :name
+  .control-group
+    =f.label :teams, :class => "control-label"
+    .controls
+      %ul#team-divisions
+        - @dteams.each do |t|
+          %li
+            =t.team.name
+            -if is_admin?
+              =link_to "", t, method: :delete, data: { confirm: "Remove #{t.team} from #{@division.name}?" }, :class => "icon-remove"
+  .control-group
+    %label{:class => "control-label"} Add Team
+    .controls
   .actions
-    = f.submit 'Save'
+    = f.submit(:class => "btn btn-primary", :value=> "Save")
+
+=form_for(@division.team_divisions.build(division_id: @division.id), remote: true, 'data-update-target' => 'update-container') do |t|
+  =t.hidden_field :division_id, :value => @division.id
+  =t.select :team_id, options_for_select(@teams_array)
+  =t.submit "Add Team To Division", :class => "btn btn-info"
+
+
+%td=# link_to "delete", team, method: :delete, data: { confirm: "Remove #{team.name} from #{@division.name}?" }
