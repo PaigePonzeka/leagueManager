@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :teams, :through => :team_players
   has_many :team_managers
   has_many :teams, :through => :team_managers
+  has_many :divisions_reps
+  has_many :divisions, :through => :division_reps
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

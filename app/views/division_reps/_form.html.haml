@@ -1,0 +1,16 @@
+= form_for @division_rep do |f|
+  - if @division_rep.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@division_rep.errors.count, "error")} prohibited this division_rep from being saved:"
+      %ul
+        - @division_rep.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :division_id
+    = f.number_field :division_id
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .actions
+    = f.submit 'Save'

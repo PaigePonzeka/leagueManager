@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Division:
+  = @division_rep.division_id
+%p
+  %b User:
+  = @division_rep.user_id
+
+= link_to 'Edit', edit_division_rep_path(@division_rep)
+\|
+= link_to 'Back', division_reps_path

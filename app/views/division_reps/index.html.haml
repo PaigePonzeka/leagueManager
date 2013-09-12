@@ -1,0 +1,21 @@
+%h1 Listing division_reps
+
+%table
+  %tr
+    %th Division
+    %th User
+    %th
+    %th
+    %th
+
+  - @division_reps.each do |division_rep|
+    %tr
+      %td= division_rep.division_id
+      %td= division_rep.user_id
+      %td= link_to 'Show', division_rep
+      %td= link_to 'Edit', edit_division_rep_path(division_rep)
+      %td= link_to 'Destroy', division_rep, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Division rep', new_division_rep_path
