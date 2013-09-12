@@ -1,0 +1,4 @@
+<% if @division_rep.errors.any? %>
+<% else %>
+  $("#division-reps").append('<%= escape_javascript("Added: #{name(@division_rep.user)}")%>');
+<% end %>

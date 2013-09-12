@@ -11,6 +11,15 @@
     .controls
       = f.text_field :name
   .control-group
+    = f.label :representatives, :class => "control-label"
+    .controls
+      %ul#division-reps
+        - @representatives.each do |rep|
+          %li
+            = name(rep.user)
+            - if is_admin?
+              =link_to "", rep, method: :delete, data: { confirm: "Remove #{name(rep.user)} from #{@division.name}?" }, :class => "icon-remove"
+  .control-group
     =f.label :teams, :class => "control-label"
     .controls
       %ul#team-divisions
@@ -19,16 +28,22 @@
             =t.team.name
             -if is_admin?
               =link_to "", t, method: :delete, data: { confirm: "Remove #{t.team} from #{@division.name}?" }, :class => "icon-remove"
-  .control-group
-    %label{:class => "control-label"} Add Team
-    .controls
   .actions
-    = f.submit(:class => "btn btn-primary", :value=> "Save")
+    = f.submit(:class => "btn btn-primary", :value=> "Save Changes")
 
-=form_for(@division.team_divisions.build(division_id: @division.id), remote: true, 'data-update-target' => 'update-container') do |t|
-  =t.hidden_field :division_id, :value => @division.id
-  =t.select :team_id, options_for_select(@teams_array)
-  =t.submit "Add Team To Division", :class => "btn btn-info"
+- if is_admin?
+  =form_for(@division.team_divisions.build(division_id: @division.id), remote: true, 'data-update-target' => 'update-container') do |t|
+    =t.hidden_field :division_id, :value => @division.id
+    =t.select :team_id, options_for_select(@teams_array)
+    =t.submit "Add Team To Division", :class => "btn btn-info"
 
+  =form_for(@division.division_reps.build(division_id: @division.id), remote: true, 'data-update-target' => 'update-container') do |t|
+    =t.hidden_field :division_id, :value => @division.id
+    #available-users-results
+    =t.select :user_id, options_for_select([]), {}, { :class => 'js-available-users' , :size => 5}
+    =t.submit "Add Representative", :class => "btn btn-info"
 
-%td=# link_to "delete", team, method: :delete, data: { confirm: "Remove #{team.name} from #{@division.name}?" }
+  =form_tag users_path, :method => 'get', :remote => true, :class =>"form-search" do
+    = text_field_tag :search, params[:search], :placeholder => "Enter User Email Here" 
+    = submit_tag "Find User", :name => nil, :class => 'btn'
+

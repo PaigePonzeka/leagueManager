@@ -2,7 +2,7 @@ LeagueManager::Application.routes.draw do
   resources :division_reps
 
 
-  #resources :team_divisions
+  resources :team_divisions, only: [:new, :create, :destroy]
   get "static_pages/home"
 
   #get "static_pages/help"

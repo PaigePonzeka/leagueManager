@@ -46,6 +46,7 @@ class DivisionRepsController < ApplicationController
     respond_to do |format|
       if @division_rep.save
         format.html { redirect_to @division_rep, notice: 'Division rep was successfully created.' }
+        format.js { render :layout=>false }
         format.json { render json: @division_rep, status: :created, location: @division_rep }
       else
         format.html { render action: "new" }
@@ -62,6 +63,7 @@ class DivisionRepsController < ApplicationController
     respond_to do |format|
       if @division_rep.update_attributes(params[:division_rep])
         format.html { redirect_to @division_rep, notice: 'Division rep was successfully updated.' }
+        format.js   {redirect_to :back}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -77,7 +79,8 @@ class DivisionRepsController < ApplicationController
     @division_rep.destroy
 
     respond_to do |format|
-      format.html { redirect_to division_reps_url }
+      format.html { redirect_to :back }
+      format.js   {redirect_to :back}
       format.json { head :no_content }
     end
   end

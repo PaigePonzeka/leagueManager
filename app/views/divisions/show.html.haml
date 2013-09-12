@@ -5,6 +5,10 @@
   -if is_admin?
     = link_to '', edit_division_path(@division), {:class => "icon icon-edit"}
 
+%p 
+  Division Representative: 
+  -@representatives.each do |rep|
+    =link_to "#{name(rep.user)}", rep.user
 %table.table.table-striped.list-table
   %th Teams
   %th
