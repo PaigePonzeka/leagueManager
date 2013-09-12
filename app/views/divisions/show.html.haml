@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @division.name
+
+= link_to 'Edit', edit_division_path(@division)
+\|
+= link_to 'Back', divisions_path

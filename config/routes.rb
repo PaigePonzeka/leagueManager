@@ -1,4 +1,7 @@
 LeagueManager::Application.routes.draw do
+  resources :divisions
+
+
   get "static_pages/home"
 
   #get "static_pages/help"
