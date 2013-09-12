@@ -1,4 +1,5 @@
 class DivisionsController < ApplicationController
+  before_filter :require_admin, :only  => [:new, :destroy, :edit, :update]
   # GET /divisions
   # GET /divisions.json
   def index

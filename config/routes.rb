@@ -1,10 +1,5 @@
 LeagueManager::Application.routes.draw do
-  resources :team_divisions
-
-
-  resources :divisions
-
-
+  #resources :team_divisions
   get "static_pages/home"
 
   #get "static_pages/help"
@@ -12,6 +7,7 @@ LeagueManager::Application.routes.draw do
   #get "users/new"
 
 resources :team_players, only: [:new, :create, :destroy]
+resources :divisions
 resources :teams
 #resources :players
 resources :users 

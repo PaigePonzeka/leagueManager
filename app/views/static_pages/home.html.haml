@@ -3,14 +3,13 @@
   %h1 
     Welcome 
     = username
-  -if is_admin?
-    %ul.admin-actions
-      %li
-        = link_to "Manage Users", users_path
-      %li
-        = link_to "Manage Teams", teams_path
-  - if  is_manager?
-    %ul
+  %ul.actions  
+    %li= link_to "View Divisions", divisions_path 
+    -if is_admin?
+      %li= link_to "Manage Users", users_path
+      %li= link_to "Manage Teams", teams_path
+    
+    - if  is_manager?
       - teamsManaged.each do |t|
         %li= link_to "Manage #{t.team.name}", t.team
 
