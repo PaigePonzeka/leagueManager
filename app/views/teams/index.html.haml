@@ -1,16 +1,10 @@
-%h1 Listing teams
+%h1 Teams
 %table.table.list-table.table-striped
-  %tr
-    %th Name
-    %th
-    %th
-    %th
   - @teams.each do |team|
     %tr
-      %td= team.name
-      %td= link_to 'Show', team, {:class => "icon icon-eye-open"}
+      %td= link_to "#{team.name}", team
       - if is_admin?
-        %td= link_to 'Edit', edit_team_path(team), {:class => "icon icon-edit"}
-        %td= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to '', edit_team_path(team), {:class => "icon icon-edit"}
+        %td= link_to '', team, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon-remove"
 %br/
-= link_to 'New Team', new_team_path
+= link_to 'Create A Team', new_team_path, {:class => "btn btn-primary btn-large"}
