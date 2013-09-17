@@ -1,4 +1,13 @@
 LeagueManager::Application.routes.draw do
+  resources :parks
+
+
+  resources :fields
+
+
+  resources :games
+
+
   resources :seasons
 
 
