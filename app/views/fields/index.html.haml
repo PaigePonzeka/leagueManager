@@ -1,0 +1,20 @@
+%h1 Fields
+
+%table.table.table-striped.list-table
+  %tr
+    %th Name
+    %th Park
+    %th
+    %th
+
+  - @fields.each do |field|
+    %tr
+      %td= link_to "#{field.name}", field
+      %td= field.park.name
+      %td= link_to '', edit_field_path(field), :class => "icon-edit"
+      %td= link_to '', field, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "icon-remove"
+
+%br
+
+-if is_admin?
+  = link_to 'New Field', new_field_path, {:class => "btn btn-primary btn-large"}

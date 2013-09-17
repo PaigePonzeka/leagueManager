@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  home_team_id: 1
+  visiting_team_id: 1
+  field_id: 1
+  start: 
+  season_id: 1
+
+two:
+  home_team_id: 1
+  visiting_team_id: 1
+  field_id: 1
+  start: 
+  season_id: 1

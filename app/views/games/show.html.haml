@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Home team:
+  = @game.home_team_id
+%p
+  %b Visiting team:
+  = @game.visiting_team_id
+%p
+  %b Field:
+  = @game.field_id
+%p
+  %b Start:
+  = @game.start
+%p
+  %b Season:
+  = @game.season_id
+
+= link_to 'Edit', edit_game_path(@game)
+\|
+= link_to 'Back', games_path

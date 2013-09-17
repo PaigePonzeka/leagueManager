@@ -10,6 +10,10 @@
       %li= link_to "Manage Users", users_path
       %li= link_to "Manage Division Reps", division_reps_path
       %li= link_to "Manage Teams", teams_path
+      %li= link_to "Manage Fields", fields_path
+      %li= link_to "Manage Parks", parks_path
+      %li= link_to "Manage Games", parks_path
+      %li= link_to "Manange Seasons", seasons_path
     
     - if  is_manager?
       - teamsManaged.each do |t|

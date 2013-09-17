@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Url:
+  = @park.url
+%p
+  %b Name:
+  = @park.name
+
+= link_to 'Edit', edit_park_path(@park)
+\|
+= link_to 'Back', parks_path
