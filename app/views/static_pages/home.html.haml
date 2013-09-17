@@ -5,6 +5,7 @@
     = username
   %ul.actions  
     %li= link_to "View Divisions", divisions_path 
+    %li= link_to "View Seasons", seasons_path
     -if is_admin?
       %li= link_to "Manage Users", users_path
       %li= link_to "Manage Division Reps", division_reps_path

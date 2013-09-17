@@ -1,0 +1,21 @@
+%h1 Seasons
+
+%table.table.table-striped.list-table
+  %tr
+    %th Name
+    %th Start
+    %th End
+    %th
+    %th
+
+  - @seasons.each do |season|
+    %tr
+      %td= link_to "#{season.name}", season
+      %td= season.start
+      %td= season.end
+      %td= link_to '', edit_season_path(season), {:class => "icon icon-edit"}
+      %td= link_to '', season, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "icon-remove"
+
+%br
+-if is_admin?
+  = link_to 'New Season', new_season_path, {:class=> "btn btn-success btn-large"}

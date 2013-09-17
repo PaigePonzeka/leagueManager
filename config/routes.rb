@@ -1,4 +1,7 @@
 LeagueManager::Application.routes.draw do
+  resources :seasons
+
+
   resources :division_reps
 
 
