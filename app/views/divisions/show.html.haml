@@ -2,8 +2,9 @@
 
 %h1
   = @division.name
-  -if is_admin?
-    = link_to '', edit_division_path(@division), {:class => "icon icon-edit"}
+  - if signed_in?
+    -if is_admin? || is_division_rep(@division)
+      = link_to '', edit_division_path(@division), {:class => "icon icon-edit"}
 
 %p 
   Division Representative: 

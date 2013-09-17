@@ -28,6 +28,13 @@ module SessionsHelper
     teamsManaged.size > 0
   end
 
+  def is_division_rep(division)
+    puts "searching for division rep #{division.name}"
+    puts self.current_user.inspect
+    divisionRep = DivisionRep.where(  :user_id => self.current_user.id)
+    #divisionRep.size > 0
+  end
+
   def teamsManaged
     teams =  TeamManager.where(:user_id => current_user.id)
   end
