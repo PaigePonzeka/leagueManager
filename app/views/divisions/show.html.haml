@@ -3,7 +3,7 @@
 %h1
   = @division.name
   - if signed_in?
-    -if is_admin? || is_division_rep(@division)
+    -if is_admin?
       = link_to '', edit_division_path(@division), {:class => "icon icon-edit"}
 
 %p 
