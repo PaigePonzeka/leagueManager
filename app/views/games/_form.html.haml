@@ -20,7 +20,7 @@
     =f.select(:field_id, options_for_select(@fields.collect {|p| [ p.name, p.id ] }), {:include_blank => 'Select a Field'})
   .field
     = f.label :start
-    = f.datetime_select :start
+    = f.text_field :start, :class=> "js-datepicker"
   .field
     = f.label :season_id
     =f.select(:season_id, options_for_select(@seasons.collect {|p| [ p.name, p.id ] }), {:include_blank => 'Select a Season'})

@@ -24,9 +24,12 @@ $(document).ready(function(){
       }
   });
 
+
+
     //console.log("Populate teams");
     // make an ajax call to get the team names and populate the select box
   });
+  $( ".js-datepicker" ).datetimepicker();
 
   function createTitleOption() {
      var option = $("<option/>");
