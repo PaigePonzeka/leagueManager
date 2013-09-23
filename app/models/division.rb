@@ -6,4 +6,6 @@ class Division < ActiveRecord::Base
 
   has_many :division_reps
   has_many :users, :through => :division_reps
+
+  has_one :game
 end

@@ -1,7 +1,8 @@
-%h1 Listing games
+%h1 Games
 
-%table
+%table.table.table-striped.list-table
   %tr
+    %th Division
     %th Home team
     %th Visiting team
     %th Field
@@ -12,16 +13,20 @@
     %th
 
   - @games.each do |game|
+    - home_team = get_team_by_id(game.home_team_id)
+    - away_team = get_team_by_id(game.visiting_team_id)
     %tr
-      %td= game.home_team_id
-      %td= game.visiting_team_id
-      %td= game.field_id
+      %td= game.division.name
+      %td= link_to "#{home_team.name}", home_team
+      %td= link_to "#{away_team.name}", away_team
+      %td= game.field.name
       %td= game.start
-      %td= game.season_id
-      %td= link_to 'Show', game
-      %td= link_to 'Edit', edit_game_path(game)
-      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= game.season.name
+      - if is_admin?
+        %td= link_to '', edit_game_path(game), {:class => "icon icon-edit"}
+        %td= link_to '', game, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "icon-remove"
 
 %br
 
-= link_to 'New Game', new_game_path
+-if is_admin?
+  = link_to 'New Game', new_game_path, :class => "btn btn-primary btn-large"

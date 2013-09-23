@@ -26,7 +26,9 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-
+    @divisions = Division.find(:all)
+    @fields = Field.find(:all)
+    @seasons = Season.find(:all)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -42,7 +44,6 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(params[:game])
-
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }

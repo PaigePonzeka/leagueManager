@@ -7,4 +7,9 @@ module ApplicationHelper
       teams = TeamManager.where(:user_id => current_user.id, :team_id => team.id)
       teams.length > 0
   end
+
+  def get_team_by_id(team_id)
+    team = Team.where(:id => team_id).first
+    team
+  end
 end

@@ -85,6 +85,19 @@ class TeamsController < ApplicationController
     end
   end
 
+  def get_teams_by_division
+    team_divisions = TeamDivision.where(:division_id => params[:division_id])
+    puts "Test"
+    teams = []
+
+    team_divisions.each do |t|
+      teams.push(t.team)
+    end
+    puts teams.inspect
+    respond_to do |format|
+          format.json { render json: teams.to_json}
+      end
+  end
 
    def require_admin_or_correct_manager
       @team = Team.find(params[:id])

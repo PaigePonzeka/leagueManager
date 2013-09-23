@@ -35,6 +35,7 @@ match '/help',    to: 'static_pages#help',    via: 'get'
 #match '/contact', to: 'static_pages#contact', via: 'get'
 match '/signin',  to: 'sessions#new',         via: 'get'
 match '/signout', to: 'sessions#destroy',     via: 'delete'
+match "/get_teams_by_division" => "teams#get_teams_by_division"
 
 
   # The priority is based upon order of creation:

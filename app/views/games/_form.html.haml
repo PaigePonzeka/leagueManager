@@ -7,19 +7,22 @@
           %li= msg
 
   .field
+    = f.label :division_id
+    =f.select(:division_id, options_for_select(@divisions.collect {|p| [ p.name, p.id ] }), {:include_blank => 'Select a Division'}, :class=> "js-division-select")
+  .field
     = f.label :home_team_id
-    = f.number_field :home_team_id
+    =f.select(:home_team_id, [], {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')
   .field
     = f.label :visiting_team_id
-    = f.number_field :visiting_team_id
+    =f.select(:visiting_team_id, [] , {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')
   .field
     = f.label :field_id
-    = f.number_field :field_id
+    =f.select(:field_id, options_for_select(@fields.collect {|p| [ p.name, p.id ] }), {:include_blank => 'Select a Field'})
   .field
     = f.label :start
-    = f.text_field :start
+    = f.datetime_select :start
   .field
     = f.label :season_id
-    = f.number_field :season_id
+    =f.select(:season_id, options_for_select(@seasons.collect {|p| [ p.name, p.id ] }), {:include_blank => 'Select a Season'})
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => "btn btn-primary"
