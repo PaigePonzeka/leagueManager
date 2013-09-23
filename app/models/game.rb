@@ -1,6 +1,11 @@
 class Game < ActiveRecord::Base
   attr_accessible :field_id, :home_team_id, :season_id, :start, :visiting_team_id, :division_id
 
+  #validates :home_team_id, presence: true
+  #validates :visiting_team_id, presence: true
+  validates :season, presence: true
+  #validates :division_id, presence: true
+
   belongs_to :season
   belongs_to :field
   belongs_to :division

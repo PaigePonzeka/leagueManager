@@ -38,12 +38,18 @@ class GamesController < ApplicationController
   # GET /games/1/edit
   def edit
     @game = Game.find(params[:id])
+    @divisions = Division.find(:all)
+    @fields = Field.find(:all)
+    @seasons = Season.find(:all)
   end
 
   # POST /games
   # POST /games.json
   def create
     @game = Game.new(params[:game])
+     @divisions = Division.find(:all)
+    @fields = Field.find(:all)
+    @seasons = Season.find(:all)
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
