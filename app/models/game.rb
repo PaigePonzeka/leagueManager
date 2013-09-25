@@ -11,7 +11,7 @@ class Game < ActiveRecord::Base
   belongs_to :field
   belongs_to :division
   belongs_to :home_team, :class_name => "Team"
-  belongs_to :away_team, :class_name => "Team"
+  belongs_to :visiting_team, :class_name => "Team"
 
   #, :class_name => "Game", :foreign_key => 'home_team_id'
   #has_one :home_team, :class_name => "Team", :foreign_key => "id"

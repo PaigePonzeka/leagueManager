@@ -26,7 +26,9 @@ class DivisionsController < ApplicationController
   # GET /divisions/new.json
   def new
     @division = Division.new
-
+    @dteams =  TeamDivision.where(:division_id => params[:id])
+    @teams_array = Team.order('name ASC').all.map { |team| [team.name, team.id]} 
+    @representatives = DivisionRep.where(:division_id => params[:id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @division }
@@ -37,7 +39,7 @@ class DivisionsController < ApplicationController
   def edit
     @division = Division.find(params[:id])
     @dteams =  TeamDivision.where(:division_id => params[:id])
-    @teams_array = Team.all.map { |team| [team.name, team.id] }
+    @teams_array = Team.order('name ASC').all.map { |team| [team.name, team.id] }
     @representatives = DivisionRep.where(:division_id => params[:id])
   end
 
