@@ -1,4 +1,4 @@
-= form_for @game do |f|
+= form_for(@game, :html => {:class => "form-horizontal"}) do |f|
   - if @game.errors.any?
     #error_explanation
       %h2= "#{pluralize(@game.errors.count, "error")} prohibited this game from being saved:"
@@ -6,24 +6,32 @@
         - @game.errors.full_messages.each do |msg|
           %li= msg
 
+          
 
-  .field
-    = f.label :division_id
-    =f.select(:division_id, options_for_select(@divisions.collect {|p| [ p.name, p.id ] }, @current_division_id), {:include_blank => 'Select a Division', :selected => @game.division_id}, :class=> "js-division-select")
-  .field
-    = f.label :home_team_id
-    =f.select(:home_team_id, [], {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')
-  .field
-    = f.label :visiting_team_id
-    =f.select(:visiting_team_id, [] , {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')
-  .field
-    = f.label :field_id
-    =f.select(:field_id, options_for_select(@fields.collect {|p| [ p.name, p.id ] }, @game.field_id), {:include_blank => 'Select a Field'})
-  .field
-    = f.label :start
-    = f.text_field :start, :class=> "js-datepicker"
-  .field
-    = f.label :season_id
-    =f.select(:season_id, options_for_select(@seasons.collect {|p| [ p.name, p.id ] }, @game.season_id), {:include_blank => 'Select a Season'})
-  .actions
+
+  .control-group
+    = f.label :division_id, :class => "control-label"
+    .controls
+      =f.select(:division_id, options_for_select(@divisions.collect {|p| [ p.name, p.id ] }, @current_division_id), {:include_blank => 'Select a Division', :selected => @game.division_id}, :class=> "js-division-select")
+  .control-group
+    = f.label :home_team_id, :class => "control-label"
+    .controls
+      =f.select(:home_team_id, [], {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')
+  .control-group
+    = f.label :visiting_team_id, :class => "control-label"
+    .controls
+      =f.select(:visiting_team_id, [] , {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')
+  .control-group
+    = f.label :field_id, :class => "control-label"
+    .controls
+      =f.select(:field_id, options_for_select(@fields.collect {|p| [ p.name, p.id ] }, @game.field_id), {:include_blank => 'Select a Field'})
+  .control-group
+    = f.label :start, :class => "control-label"
+    .controls
+      = f.text_field :start, :class=> "js-datepicker"
+  .control-group
+    = f.label :season_id, :class => "control-label"
+    .controls  
+      =f.select(:season_id, options_for_select(@seasons.collect {|p| [ p.name, p.id ] }, @game.season_id), {:include_blank => 'Select a Season'})
+  .form-actions
     = f.submit 'Save', :class => "btn btn-primary"
