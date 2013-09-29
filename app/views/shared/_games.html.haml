@@ -1,5 +1,4 @@
-.upcoming-games-module
-  %h3 Upcoming Games
+.games-module
   %table.table-striped.table
     %tr
       %th Away
@@ -12,7 +11,5 @@
           %td=link_to "#{game.visiting_team.name}", game.visiting_team.name
           %td=link_to "#{game.home_team.name}", game.home_team
           %td=link_to "#{game.field.name}", game.field
-          %td
-            -if game.start
-              =game.start.strftime("%-m/%-d/%y %l:%M %p")
+          %td=format_date(game.start)
         

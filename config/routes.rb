@@ -36,6 +36,7 @@ match '/help',    to: 'static_pages#help',    via: 'get'
 match '/signin',  to: 'sessions#new',         via: 'get'
 match '/signout', to: 'sessions#destroy',     via: 'delete'
 match "/get_teams_by_division" => "teams#get_teams_by_division"
+match "/schedule/:team_id", to: 'games#schedule', via: 'get'
 
 
   # The priority is based upon order of creation:

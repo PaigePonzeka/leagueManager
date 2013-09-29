@@ -22,7 +22,14 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  
+
+  def get_team_games(team_id)
+    Game.where("home_team_id = ? OR visiting_team_id = ?", team_id, team_id).order('start ASC').all
+  end
+
+  def get_division_games(division_id)
+    Game.where("division_id = ?", division_id).order('start ASC').all
+  end
 
   
 end

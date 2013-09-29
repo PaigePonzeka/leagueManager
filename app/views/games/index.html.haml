@@ -1,4 +1,4 @@
-%h1 Games
+%h1 All Games
 
 %table.table.table-striped.list-table
   %tr
@@ -20,7 +20,7 @@
       %td= link_to "#{home_team.name}", home_team
       %td= link_to "#{away_team.name}", away_team
       %td= game.field.name
-      %td= game.start
+      %td=format_date(game.start)
       %td= game.season.name
       - if is_admin?
         %td= link_to '', edit_game_path(game), {:class => "icon icon-edit"}

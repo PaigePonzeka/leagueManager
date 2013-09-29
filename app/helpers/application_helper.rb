@@ -12,4 +12,14 @@ module ApplicationHelper
     team = Team.where(:id => team_id).first
     team
   end
+
+  def format_date(date)
+    if date
+      date.strftime("%-m/%-d/%y %l:%M %p")
+    else
+      "TBA"
+    end
+  end
+
+  
 end

@@ -18,7 +18,7 @@
     - if  is_manager?
       - teamsManaged.each do |t|
         %li= link_to "Manage #{t.team.name}", t.team
-    = render :partial => "upcoming-games"   
+    = render :partial => "shared/games"   
 -else
   %h1 
     Welcome User

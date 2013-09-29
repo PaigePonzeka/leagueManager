@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Game.order('division_id DESC').all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,6 +32,14 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
+    end
+  end
+
+  def schedule
+    @team = Team.find_by_id(params[:team_id])
+    @games = get_team_games(@team.id)
+    respond_to do |format|
+      format.html
     end
   end
 

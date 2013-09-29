@@ -8,13 +8,13 @@ class StaticPagesController < ApplicationController
         # show only team games or manager games
         teamPlayer = TeamPlayer.where(user_id: current_user.id).first
         teamManager = TeamManager.where(user_id: current_user.id).first
-        puts teamPlayer.inspect
-        puts teamManager.inspect
-        puts "Falallalala"
-        if teamPlayer
-          @games = Game..where("home_team_id = ? OR visiting_team_id = ?", teamPlayer.team_id, teamPlayer.id).all
+        divisionRep =  DivisionRep.where(user_id: current_user.id).first
+        if divisionRep
+          @games = get_division_games(divisionRep.division_id)
+        elsif teamPlayer
+          @games = get_team_games(teamPlayer.team_id)
         elsif teamManager
-          @games = Game.where("home_team_id = ? OR visiting_team_id = ?", teamManager.team_id, teamManager.id).all
+          @games = get_team_games(teamManager.team_id)
         end  
       end
     end
