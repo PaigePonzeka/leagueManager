@@ -15,7 +15,7 @@ class SeasonsController < ApplicationController
   # GET /seasons/1.json
   def show
     @season = Season.find(params[:id])
-
+    @games = Game.where("season_id" => params[:id]).order('start ASC')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @season }

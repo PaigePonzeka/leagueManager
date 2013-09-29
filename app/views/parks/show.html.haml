@@ -1,12 +1,9 @@
-%p#notice= notice
+%h1=@park.name
 
-%p
-  %b Url:
-  = @park.url
-%p
-  %b Name:
-  = @park.name
+%ul
+  %li=link_to "View Park Details", @park.url
 
-= link_to 'Edit', edit_park_path(@park)
-\|
-= link_to 'Back', parks_path
+-if is_admin?
+  = link_to 'Edit', edit_park_path(@park), :class=> "btn btn-large"
+
+= link_to 'View all Parks', parks_path

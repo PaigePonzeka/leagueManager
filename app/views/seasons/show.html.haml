@@ -1,15 +1,16 @@
 %p#notice= notice
+%h1= @season.name
 
-%p
-  %b Name:
-  = @season.name
-%p
-  %b Start:
-  = @season.start
-%p
-  %b End:
-  = @season.end
+%ul
+  %li
+    Start Date:
+    =format_date(@season.start)
+  %li 
+    End Date
+    =format_date(@season.end)
+  %li
+    = render :partial => "shared/games"  
+-if is_admin?    
+  = link_to 'Edit', edit_season_path(@season), :class => "btn btn-large"
 
-= link_to 'Edit', edit_season_path(@season)
-\|
-= link_to 'Back', seasons_path
+= link_to 'View all Seasons', seasons_path
