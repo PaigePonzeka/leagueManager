@@ -2,11 +2,31 @@
 //# All this logic will automatically be available in application.js.
 //# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready(function(){
-  $('.js-division-select').change(function(){
+   var teams_select  =  $('.js-teams-select');
+   var division_select = $('.js-division-select');
+
+  if(division_select.val()){
+    updateTeam(division_select.val());
+  }
+
+  division_select.change(function(){
     var division_id = $(this).val();
-    console.log(division_id);
-    var teams_select  =  $('.js-teams-select');
-     $.ajax({
+    updateTeam(division_id);
+  });
+
+  $( ".js-datepicker" ).datetimepicker({
+    dateFormat: 'M d, yy',
+    timeFormat: 'hh:mm tt'
+  });
+
+  function createTitleOption() {
+     var option = $("<option/>");
+      option.text("Select Team");
+      return option;
+  }
+
+  function updateTeam(division_id){
+    $.ajax({
       url: "/get_teams_by_division",
       type: "GET",
       data: {"division_id" : division_id},
@@ -23,20 +43,5 @@ $(document).ready(function(){
         });
       }
   });
-
-
-
-    //console.log("Populate teams");
-    // make an ajax call to get the team names and populate the select box
-  });
-  $( ".js-datepicker" ).datetimepicker({
-    dateFormat: 'M d, yy',
-    timeFormat: 'hh:mm tt'
-  });
-
-  function createTitleOption() {
-     var option = $("<option/>");
-      option.text("Select Team");
-      return option;
   }
 });

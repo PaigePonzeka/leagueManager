@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :require_admin, :only  => [:new, :destroy, :edit, :update]
+  before_filter :require_admin_or_division_rep, :only  => [:new, :destroy, :edit, :update]
   # GET /games
   # GET /games.json
   def index
@@ -26,9 +26,19 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-    @divisions = Division.find(:all)
     @fields = Field.find(:all)
     @seasons = Season.find(:all)
+    
+    if is_division_rep?
+      puts "divison rep"
+      division = get_reps_division.first
+      #puts division.division_id
+      @divisions = Division.where( :id =>division.division_id) 
+      @current_division_id = division.division_id
+    else
+      @divisions = Division.find(:all)
+      @current_division_id = @game.division_id
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -49,6 +59,7 @@ class GamesController < ApplicationController
     @divisions = Division.find(:all)
     @fields = Field.find(:all)
     @seasons = Season.find(:all)
+    @current_division = @game.division_id
   end
 
   # POST /games

@@ -6,9 +6,10 @@
         - @game.errors.full_messages.each do |msg|
           %li= msg
 
+
   .field
     = f.label :division_id
-    =f.select(:division_id, options_for_select(@divisions.collect {|p| [ p.name, p.id ] }, @game.division_id), {:include_blank => 'Select a Division', :selected => @game.division_id}, :class=> "js-division-select")
+    =f.select(:division_id, options_for_select(@divisions.collect {|p| [ p.name, p.id ] }, @current_division_id), {:include_blank => 'Select a Division', :selected => @game.division_id}, :class=> "js-division-select")
   .field
     = f.label :home_team_id
     =f.select(:home_team_id, [], {:include_blank => 'Select a Division First'}, :class=> "js-teams-select", :disabled => 'disabled')

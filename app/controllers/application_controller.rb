@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
   def require_admin_or_user
     unless is_admin?
       flash[:error] = "Access Denied"
@@ -23,6 +24,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin_or_division_rep
+    unless is_admin? || is_division_rep?
+      flash[:error] = "Access Denied"
+      redirect_to root_path
+    end
+  end
+
+  
   def get_team_games(team_id)
     Game.where("home_team_id = ? OR visiting_team_id = ?", team_id, team_id).order('start ASC').all
   end
