@@ -7,6 +7,20 @@
     %ul
       -@fields.each do |field|
         %li=link_to "#{field.name}", field
+  %li
+    %h3 Directions
+    %ul.nav.nav-tabs
+      %li
+        %a{"data-toggle" => "tab", href: "#car"} Via Car
+      %li
+        %a{"data-toggle" => "tab", href: "#transit"} Via Transit
+    .tab-content
+      #car.tab-pane.active 
+        .park-directions
+          =raw(@park.directions_by_car)
+      #transit.tab-pane 
+        .park-directions
+          = raw(@park.directions_by_transit)
 
 -if is_admin?
   = link_to 'Edit', edit_park_path(@park), :class=> "btn btn-large"

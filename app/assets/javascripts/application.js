@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //=require jquery-ui-1.10.3.custom.min
 //=require jquery-ui-timepicker-addon
+//= require bootstrap
+//= require tinymce/tinymce.min
 //= require_tree .
 
 //Javascripts (https://github.com/thomas-mcdonald/bootstrap-sass)
