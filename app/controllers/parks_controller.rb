@@ -15,7 +15,7 @@ class ParksController < ApplicationController
   # GET /parks/1.json
   def show
     @park = Park.find(params[:id])
-
+    @fields = Field.where("park_id" => params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @park }

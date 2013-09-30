@@ -1,4 +1,4 @@
-%header.navbar
+%header.navbar.navbar-inverse
   .navbar-inner
     .container
       %nav
@@ -8,9 +8,22 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               Divisions
               %b.caret
-              %ul.dropdown-menu
-                - Division.all.each do |division|
-                  %li= link_to "#{division.name}", division
+            %ul.dropdown-menu
+              - Division.all.each do |division|
+                %li.dropdown-submenu
+                  = link_to "#{division.name}", division
+                  - teams = TeamDivision.where(:division_id => division.id)
+                  %ul.dropdown-menu
+                    - teams.each do |t|
+    
+                      %li=link_to "#{t.team.name}", t.team
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Park
+              %b.caret
+            %ul.dropdown-menu
+              - Park.all.each do |park|
+                %li=link_to "#{park.name}", park
           -#%li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               Info

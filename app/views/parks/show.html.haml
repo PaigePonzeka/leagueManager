@@ -2,6 +2,11 @@
 
 %ul
   %li=link_to "View Park Details", @park.url
+  %li 
+    %h4 Fields
+    %ul
+      -@fields.each do |field|
+        %li=link_to "#{field.name}", field
 
 -if is_admin?
   = link_to 'Edit', edit_park_path(@park), :class=> "btn btn-large"

@@ -88,7 +88,6 @@ class TeamsController < ApplicationController
 
   def get_teams_by_division
     team_divisions = TeamDivision.where(:division_id => params[:division_id])
-    puts "Test"
     teams = []
 
     team_divisions.each do |t|

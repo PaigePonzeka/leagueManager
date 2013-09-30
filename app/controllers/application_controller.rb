@@ -40,5 +40,10 @@ class ApplicationController < ActionController::Base
     Game.where("division_id = ?", division_id).order('start ASC').all
   end
 
+  def get_teams_by_division(division_id)
+     team_divisions = TeamDivision.where(:division_id => division_id)
+     team_divisions
+  end
+
   
 end
