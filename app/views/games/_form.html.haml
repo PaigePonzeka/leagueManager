@@ -33,5 +33,13 @@
     = f.label :season_id, :class => "control-label"
     .controls  
       =f.select(:season_id, options_for_select(@seasons.collect {|p| [ p.name, p.id ] }, @game.season_id), {:include_blank => 'Select a Season'})
+  .control-group
+    = f.label :home_team_score, :class => "control-label"
+    .controls
+      = f.number_field :home_team_score    
+  .control-group
+    = f.label :away_team_score, :class => "control-label"
+    .controls
+      = f.number_field :away_team_score   
   .form-actions
     = f.submit 'Save', :class => "btn btn-primary"
