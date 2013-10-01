@@ -2,16 +2,13 @@
 
 %table.table.table-striped.list-table
   %tr
-    %th Url
     %th Name
-    %th
     %th
     %th
 
   - @parks.each do |park|
     %tr
       %td= link_to "#{park.name}", park
-      %td= park.url
       %td= link_to '', edit_park_path(park), :class => "icon-edit"
       %td= link_to '', park, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "icon-remove"
 

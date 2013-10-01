@@ -12,10 +12,12 @@
     =link_to "#{name(rep.user)}", rep.user
 %table.table.table-striped.list-table
   %th Teams
-  %th
   -@division.teams.each do |team|
     %tr
       %td= link_to "#{team.name}", team
+
+%h4 Games
+= render :partial => "shared/games"   
       
 
 = link_to 'Back', divisions_path

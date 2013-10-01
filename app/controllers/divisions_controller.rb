@@ -16,6 +16,7 @@ class DivisionsController < ApplicationController
   def show
     @division = Division.find(params[:id])
     @representatives = DivisionRep.where(:division_id => params[:id])
+    @games = Game.where(:division_id => params[:id]).order('start ASC')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @division }

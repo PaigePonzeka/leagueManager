@@ -3,22 +3,9 @@
   %h1 
     Welcome 
     = username
-  %ul.actions  
-    %li= link_to "View Divisions", divisions_path 
-    %li= link_to "View Seasons", seasons_path
-    -if is_admin?
-      %li= link_to "Manage Users", users_path
-      %li= link_to "Manage Division Reps", division_reps_path
-      %li= link_to "Manage Teams", teams_path
-      %li= link_to "Manage Fields", fields_path
-      %li= link_to "Manage Parks", parks_path
-      %li= link_to "Manage Games", games_path
-      %li= link_to "Manange Seasons", seasons_path
-    
-    - if  is_manager?
-      - teamsManaged.each do |t|
-        %li= link_to "Manage #{t.team.name}", t.team
-    = render :partial => "shared/games"   
+
+  %h3 Next Ten Games
+  = render :partial => "shared/games"   
 -else
   %h1 
     Welcome User
