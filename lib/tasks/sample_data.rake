@@ -17,10 +17,12 @@ namespace :db do
                     {name: "Spring 2013", start_date: Date.new(2013, 5, 8), end_date: Date.new(2013, 8, 14)},
                     {name: "Fall 2013", start_date: Date.new(2013, 9, 3), end_date: Date.new(2013, 11, 4)},
                     {name: "Spring 2014", start_date: Date.new(2014, 5, 3), end_date: Date.new(2014, 8, 9)}]
+    
     generate_default_users
-    generate_divisions(divisions, teams_by_division)
-    generate_parks_and_fields(parks) 
-    generate_seasons(seasons)
+    genDivisions = generate_divisions(divisions, teams_by_division)
+    genFields = generate_parks_and_fields(parks) 
+    genSeasons = generate_seasons(seasons)
+    generate_games( genDivisions, genFields, genSeasons)
     
   end
 
@@ -43,6 +45,7 @@ namespace :db do
 
   # Generate divisions and a Division Rep
   def generate_divisions(divisions, teams_by_division)
+    genDivisions = Array.new
     divisions.each do |division|
       divisionObj = Division.create(name:division)
       divisionRep = User.create!(first_name: division, 
@@ -50,10 +53,11 @@ namespace :db do
                                           email: "rep+#{division}@gmail.com", 
                                           password: "123456", 
                                           password_confirmation: "123456")
-      #create Division Rep
+      genDivisions.push(divisionObj)
       DivisionRep.create(division_id: divisionObj.id, user_id: divisionRep.id)
       generate_teams(teams_by_division, division, divisionObj)
-    end  
+    end 
+    return genDivisions  
   end
    # Generate Teams per division, add a manager and a roster of players
   def generate_teams(teams_by_division, division, divisionObj)
@@ -83,23 +87,49 @@ namespace :db do
 
   # Generates an individual park and an individual field per park
   def generate_parks_and_fields(parks)
+    genFields = Array.new
     parks.each do |park|
       parkObj = Park.create!(name: park, 
                         directions_by_car: Faker::Lorem.paragraph,
                         directions_by_transit: Faker::Lorem.paragraph)
+      
+      fieldObj = Field.create!(name: "#{parkObj.name} Field ##{rand(5..30)}",
+                        park_id: parkObj.id)
+      genFields.push(fieldObj)
 
-      Field.create!(name: "#{parkObj.name} Field ##{rand(5..30)}",
-                        park_id: parkObj.id
-        )
-
-    end 
+    end
+    return genFields
   end
 
   def generate_seasons(seasons)
+    genSeasons = Array.new
     seasons.each do |season|
-      Season.create!(name: season[:name],
+      seasonObj = Season.create!(name: season[:name],
                             start_date: season[:start_date],
                             end_date: season[:end_date] )
+      genSeasons.push(seasonObj)
+    end
+    return genSeasons
+  end
+
+  # for each season generate a few games for every team
+  def generate_games(divisions, fields, seasons)
+    seasons.each do |season|
+      divisions.each do |division|
+        teamsD = TeamDivision.where(:division_id => division.id)
+        teamsD.each do |team_home|
+          teamsD.each do |team_away|
+            field = fields[rand(0..(fields.count-1))]
+            game = Game.create!(home_team_id: team_home.team_id, 
+                                            visiting_team_id: team_away.team_id, 
+                                            field_id: field.id,
+                                            division_id: division.id,
+                                            season_id: season.id
+
+                                            )
+          end
+        end
+      end
     end
   end
 end

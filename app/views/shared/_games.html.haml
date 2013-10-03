@@ -8,7 +8,7 @@
     - if @games
       -@games.each do |game|
         %tr
-          %td=link_to "#{game.visiting_team.name}", game.visiting_team.name
+          %td=link_to "#{game.visiting_team.name}", game.visiting_team
           %td=link_to "#{game.home_team.name}", game.home_team
           %td=link_to "#{game.field.name}", game.field
           %td=format_date(game.start)
