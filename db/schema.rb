@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131001021459) do
+ActiveRecord::Schema.define(:version => 20131003023824) do
 
   create_table "division_reps", :force => true do |t|
     t.integer  "division_id"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20131001021459) do
 
   create_table "seasons", :force => true do |t|
     t.string   "name"
-    t.date     "start"
-    t.date     "end"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
