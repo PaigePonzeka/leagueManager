@@ -21,5 +21,8 @@ module ApplicationHelper
     end
   end
 
+def active_season
+  get_active_season
+end
   
 end

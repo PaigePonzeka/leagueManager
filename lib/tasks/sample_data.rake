@@ -15,7 +15,7 @@ namespace :db do
     parks = ["Randall's Island", "Red Hook Park", "Hudson River Park", "East River Park"]
     seasons = [{name: "Fall 2012", start_date: Date.new(2012, 9, 12), end_date: Date.new(2012, 11, 6)},
                     {name: "Spring 2013", start_date: Date.new(2013, 5, 8), end_date: Date.new(2013, 8, 14)},
-                    {name: "Fall 2013", start_date: Date.new(2013, 9, 3), end_date: Date.new(2013, 11, 4)},
+                    {name: "Fall 2013", start_date: Date.new(2013, 10, 1), end_date: Date.new(2013, 11, 4)},
                     {name: "Spring 2014", start_date: Date.new(2014, 5, 3), end_date: Date.new(2014, 8, 9)}]
     
     generate_default_users
@@ -117,16 +117,25 @@ namespace :db do
     seasons.each do |season|
       divisions.each do |division|
         teamsD = TeamDivision.where(:division_id => division.id)
+        season_start = season.start_date
+        game_start = season_start
         teamsD.each do |team_home|
+          # generate fake start date
+          game_start = season_start
           teamsD.each do |team_away|
-            field = fields[rand(0..(fields.count-1))]
-            game = Game.create!(home_team_id: team_home.team_id, 
+            if team_away.team_id != team_home.team_id
+              field = fields[rand(0..(fields.count-1))]
+             
+              game = Game.create!(home_team_id: team_home.team_id, 
                                             visiting_team_id: team_away.team_id, 
                                             field_id: field.id,
                                             division_id: division.id,
-                                            season_id: season.id
+                                            season_id: season.id,
+                                            start: game_start
 
                                             )
+               game_start = game_start + 7.days
+            end
           end
         end
       end

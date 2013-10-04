@@ -18,7 +18,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @players = TeamPlayer.where(:team_id => params[:id])
-    @games = get_team_games(@team.id)
+    @games = get_team_game_by_season(@team.id, get_active_season.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @team }

@@ -4,7 +4,9 @@
     Welcome 
     = username
 
-  %h3 Next Ten Games
+  %h3 
+    Upcoming Games for
+    =@active_season.name
   = render :partial => "shared/games"   
 -else
   %h1 

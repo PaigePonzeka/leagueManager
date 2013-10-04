@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
+    @active_season = get_active_season
     if signed_in?
+
       if is_admin?
         # show all games
         #Date.today.day
@@ -15,7 +17,7 @@ class StaticPagesController < ApplicationController
         elsif teamPlayer
           @games = get_team_games(teamPlayer.team_id)
         elsif teamManager
-          @games = get_team_games(teamManager.team_id)
+          @games = get_future_team_games(teamManager.team_id, get_active_season.id)
         end  
       end
     end
