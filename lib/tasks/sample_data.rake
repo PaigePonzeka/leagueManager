@@ -125,13 +125,20 @@ namespace :db do
           teamsD.each do |team_away|
             if team_away.team_id != team_home.team_id
               field = fields[rand(0..(fields.count-1))]
-             
+              home_score = nil
+              away_score = nil
+              if(game_start < Date.today)
+                home_score = rand(0..20)
+                away_score = rand(0..20)
+              end
               game = Game.create!(home_team_id: team_home.team_id, 
                                             visiting_team_id: team_away.team_id, 
                                             field_id: field.id,
                                             division_id: division.id,
                                             season_id: season.id,
-                                            start: game_start
+                                            start: game_start,
+                                            home_team_score: home_score,
+                                            visiting_team_score: away_score
 
                                             )
                game_start = game_start + 7.days

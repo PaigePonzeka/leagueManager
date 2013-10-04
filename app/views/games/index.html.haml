@@ -17,8 +17,14 @@
     - away_team = get_team_by_id(game.visiting_team_id)
     %tr
       %td= game.division.name
-      %td= link_to "#{home_team.name}", home_team
-      %td= link_to "#{away_team.name}", away_team
+      %td
+        = link_to "#{home_team.name}", home_team
+        - if game.home_team_score
+          = "- #{game.home_team_score}"
+      %td
+        = link_to "#{away_team.name}", away_team
+        -if game.visiting_team_score
+          = "- #{game.visiting_team_score}"
       %td= game.field.name
       %td=format_date(game.start)
       %td= game.season.name
