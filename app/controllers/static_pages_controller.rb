@@ -20,8 +20,11 @@ class StaticPagesController < ApplicationController
           @games = get_future_team_games(teamManager.team_id, get_active_season.id)
         end  
       end
+     
     end
-
+      @season = Season.first();
+      @standings = get_standings(get_games_by_division_by_season(1))
+      #@standings = get_standings(@games)
   end
 
   def help

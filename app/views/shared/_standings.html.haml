@@ -1,0 +1,16 @@
+%h2 Standings
+
+%table.table.table-striped.list-table
+  %tr
+    %th Team Name
+    %th Wins
+    %th Losses
+    %th Ties  
+    %th Points
+  -@standings.each do |key, value|
+    %tr
+      %td= key
+      %td= value[:win]
+      %td= value[:loss]
+      %td= value[:tie]
+      %td= value[:point]

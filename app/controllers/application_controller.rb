@@ -49,6 +49,10 @@ class ApplicationController < ActionController::Base
     return games
   end
 
+  def get_games_by_season(season_id)
+    Game.where("season_id = ?", season_id).order('start ASC').all
+  end
+
   def get_division_games(division_id)
     Game.where("division_id = ?", division_id).order('start ASC').all
   end
@@ -56,6 +60,55 @@ class ApplicationController < ActionController::Base
   def get_teams_by_division(division_id)
      team_divisions = TeamDivision.where(:division_id => division_id)
      team_divisions
+  end
+
+  def get_games_by_division_by_season(division_id, season: get_active_season)
+    Game.where("division_id = ? AND season_id = ?", division_id, season.id).order('start ASC').all
+  end
+
+  # renders standings from a set of games
+  def get_standings(games)
+    teams = Hash.new
+    games.each do |game|
+      division_id = game.division_id
+      home_team = game.home_team
+      away_team = game.visiting_team
+      puts game.inspect
+      if(teams[home_team.name].nil?)
+        teams[home_team.name] = {:win => 0, :loss => 0, :tie => 0, :point=> 0}
+      end
+
+      if(teams[away_team.name].nil?)
+         teams[away_team.name] = {:win => 0, :loss => 0, :tie => 0, :point => 0}
+      end
+      if(game.home_team_score && game.visiting_team_score)
+        if(game.home_team_score > game.visiting_team_score)
+          # home team won
+          teams[home_team.name][:win] += 1
+          teams[home_team.name][:point] += 10
+          # visiting team loss
+          teams[away_team.name][:loss] += 1
+        elsif(game.home_team_score < game.visiting_team_score)
+          # home team loss
+          teams[home_team.name][:loss] += 1
+          #visiting team won
+          teams[away_team.name][:win] += 1
+          teams[away_team.name][:point] += 10
+        else
+          # tie game
+          teams[home_team.name][:tie] += 1
+          teams[away_team.name][:point] += 1
+          teams[away_team.name][:tie] += 1
+          teams[away_team.name][:point] += 1
+        end
+      end
+    end
+    teams_sorted = Array.new
+    teams.each do |key, value|
+
+    end
+    teams_sorted = teams.sort_by{ |k, v| v[:point]}.reverse
+    return teams_sorted
   end
 
     # returns the season the league is currently in
