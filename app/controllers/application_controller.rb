@@ -73,7 +73,6 @@ class ApplicationController < ActionController::Base
       division_id = game.division_id
       home_team = game.home_team
       away_team = game.visiting_team
-      puts game.inspect
       if(teams[home_team.name].nil?)
         teams[home_team.name] = {:win => 0, :loss => 0, :tie => 0, :point=> 0}
       end

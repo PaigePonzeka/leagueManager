@@ -1,16 +1,20 @@
-%h2 Standings
-
-%table.table.table-striped.list-table
-  %tr
-    %th Team Name
-    %th Wins
-    %th Losses
-    %th Ties  
-    %th Points
-  -@standings.each do |key, value|
-    %tr
-      %td= key
-      %td= value[:win]
-      %td= value[:loss]
-      %td= value[:tie]
-      %td= value[:point]
+-if @standings_by_division
+  %h2 Standings
+  - @standings_by_division.each do |standing|
+    %h2
+      =standing[:division][:name]
+      Standings
+    %table.table.table-striped.list-table
+      %tr
+        %th Team Name
+        %th Wins
+        %th Losses
+        %th Ties
+        %th Points
+      -standing[:teams].each do |key, value|
+        %tr
+          %td= key
+          %td= value[:win]
+          %td= value[:loss]
+          %td= value[:tie]
+          %td= value[:point]

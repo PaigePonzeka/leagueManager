@@ -1,4 +1,4 @@
-
+= render :partial => "shared/standings"  
 -if signed_in?
   %h1 
     Welcome 
@@ -8,7 +8,6 @@
     Upcoming Games for
     =@active_season.name
   = render :partial => "shared/games" 
-  = render :partial => "shared/standings"  
 -else
   %h1 
     Welcome User
