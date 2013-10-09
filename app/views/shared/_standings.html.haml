@@ -1,20 +1,23 @@
--if @standings_by_division
-  %h2 Standings
-  - @standings_by_division.each do |standing|
-    %h2
-      =standing[:division][:name]
-      Standings
-    %table.table.table-striped.list-table
-      %tr
-        %th Team Name
-        %th Wins
-        %th Losses
-        %th Ties
-        %th Points
-      -standing[:teams].each do |key, value|
-        %tr
-          %td= key
-          %td= value[:win]
-          %td= value[:loss]
-          %td= value[:tie]
-          %td= value[:point]
+.accordion#standingsAccordion
+  -if @standings_by_division
+    - @standings_by_division.each_with_index do |standing, index|
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{ :href => "#collapse-#{index}", :data => {:toggle => "collapse", :parent => "#standingsAccordion"}}
+            =standing[:division][:name]
+            Standings
+        .accordion-body.collapse{:id => "collapse-#{index}", :class=>"#{ index == 0 ? 'in' : ''}"}   
+          %table.table.table-striped.list-table
+            %tr
+              %th Team Name
+              %th Wins
+              %th Losses
+              %th Ties
+              %th Points
+            -standing[:teams].each do |key, value|
+              %tr
+                %td= key
+                %td= value[:win]
+                %td= value[:loss]
+                %td= value[:tie]
+                %td= value[:point]
