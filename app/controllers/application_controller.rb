@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
         if(game.home_team_score > game.visiting_team_score)
           # home team won
           teams[home_team.name][:win] += 1
-          teams[home_team.name][:point] += 10
+          teams[home_team.name][:point] += 5
           # visiting team loss
           teams[away_team.name][:loss] += 1
         elsif(game.home_team_score < game.visiting_team_score)
@@ -92,19 +92,21 @@ class ApplicationController < ActionController::Base
           teams[home_team.name][:loss] += 1
           #visiting team won
           teams[away_team.name][:win] += 1
-          teams[away_team.name][:point] += 10
+          teams[away_team.name][:point] += 5
         else
           # tie game
           teams[home_team.name][:tie] += 1
-          teams[away_team.name][:point] += 1
+          teams[home_team.name][:point] += 1
           teams[away_team.name][:tie] += 1
           teams[away_team.name][:point] += 1
         end
       end
     end
-    teams_sorted = Array.new
-    teams.each do |key, value|
-
+    teams.each do |team, value|
+      puts team
+      total_games = value[:win] + value[:loss] + value[:tie]
+      win_percentage = value[:win]/total_games.to_f
+      value[:percentage] = win_percentage
     end
     teams_sorted = teams.sort_by{ |k, v| v[:point]}.reverse
     return teams_sorted

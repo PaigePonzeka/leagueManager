@@ -1,4 +1,10 @@
-= render :partial => "shared/standings"  
+.column-wrapper
+  .column.pull-left.sidebar
+    = render :partial => "shared/standings"  
+  .column.pull-left
+    Middle Column
+
+
 -if signed_in?
   %h1 
     Welcome 

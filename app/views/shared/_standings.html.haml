@@ -7,17 +7,17 @@
             =standing[:division][:name]
             Standings
         .accordion-body.collapse{:id => "collapse-#{index}", :class=>"#{ index == 0 ? 'in' : ''}"}   
-          %table.table.table-striped.list-table
+          %table.table.table-striped
             %tr
-              %th Team Name
-              %th Wins
-              %th Losses
+              %th Team
+              %th Win
+              %th Loss
               %th Ties
-              %th Points
+              %th Win%
             -standing[:teams].each do |key, value|
               %tr
                 %td= key
                 %td= value[:win]
                 %td= value[:loss]
                 %td= value[:tie]
-                %td= value[:point]
+                %td= value[:percentage]

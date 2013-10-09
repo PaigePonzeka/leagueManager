@@ -1,0 +1,12 @@
+@import "base/mixins";
+
+.column-wrapper {
+  @include clearfix;
+}
+.column {
+  float: left
+}
+
+.sidebar {
+  width: 300px;
+}
