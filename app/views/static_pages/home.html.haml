@@ -14,9 +14,9 @@
       %h1 
         Welcome User
       =link_to "Login", signin_path
-      %small
-        New User? 
-      =link_to "Sign up", new_user_path
+      - #%small
+      - #  New User? 
+      -#  =link_to "Sign up", new_user_path
     %h3 Upcoming Games 
     = render :partial => "shared/games"   
     = render :partial => "shared/posts"

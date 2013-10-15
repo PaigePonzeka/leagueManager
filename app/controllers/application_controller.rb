@@ -49,6 +49,11 @@ class ApplicationController < ActionController::Base
     return games
   end
 
+   def get_future_division_games(division_id)
+    games = Game.where("start >= ? AND division_id = ?", Date.today, division_id).order("start ASC").limit(10)
+    return games
+  end
+
   def get_games_by_season(season_id)
     Game.where("season_id = ?", season_id).order('start ASC').all
   end
