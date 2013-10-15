@@ -1,24 +1,23 @@
 .column-wrapper
+  - if signed_in?
+    %h1 
+      Welcome 
+      = username
   .column.pull-left.sidebar
-    = render :partial => "shared/standings"  
-  .column.pull-left
-    Middle Column
+    - # TODO put in check for upcoming game statuses
+    = render :partial => "shared/game-status"  
+    = render :partial => "shared/standings" 
+    = render :partial => "shared/events"     
 
-
--if signed_in?
-  %h1 
-    Welcome 
-    = username
-
-  %h3 
-    Upcoming Games for
-    =@active_season.name
-  = render :partial => "shared/games" 
--else
-  %h1 
-    Welcome User
-  =link_to "Login", signin_path
-  %small
-    New User? 
-    =link_to "Sign up", new_user_path
+  .column.pull-left.main-column
+    - if !signed_in?
+      %h1 
+        Welcome User
+      =link_to "Login", signin_path
+      %small
+        New User? 
+      =link_to "Sign up", new_user_path
+    %h3 Upcoming Games 
+    = render :partial => "shared/games"   
+    = render :partial => "shared/posts"
 
