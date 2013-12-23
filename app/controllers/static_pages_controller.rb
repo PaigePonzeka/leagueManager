@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
           @games =  get_future_division_games(divisionRep.division_id)
            division = divisionRep.division
         elsif teamPlayer
-          @games = get_team_games(teamPlayer.team_id)
+          @games = get_future_team_games(teamPlayer.team_id, @active_season)
           # TODO(this is going to break later)
           teamDivision = TeamDivision.where(team_id: teamPlayer.team_id).first()
           division = teamDivision.division
