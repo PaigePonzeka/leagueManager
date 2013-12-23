@@ -43,7 +43,6 @@ class TeamPlayersController < ApplicationController
   # POST /team_players.json
   def create
     @team_player = TeamPlayer.new(params[:team_player])
-
     respond_to do |format|
       if @team_player.save
         flash[:notice] = "Player Created" 
@@ -54,6 +53,7 @@ class TeamPlayersController < ApplicationController
         
       else
        format.html { render action: "new" }
+       format.js { render :layout=>false }
        format.json { render json: @team_player.errors, status: :unprocessable_entity }
       end
     end

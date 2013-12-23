@@ -6,6 +6,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body{:id => "#{params[:controller]}"}
+    #flash.alert.alert-error
     = render :partial => "layouts/nav"
     -flash.each do |name, msg| 
       .alert= content_tag :div, msg, class: name

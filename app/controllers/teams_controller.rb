@@ -40,6 +40,9 @@ class TeamsController < ApplicationController
   def edit
     @team = Team.find(params[:id])
     @players = TeamPlayer.where(:team_id => params[:id])
+    #TODO eligible players will eventually be players that are set as active (i.e. have paid their fees)
+    # current its players who are currently not already on the roster (can't add a player twice TODO check for this in the backend too)
+    #@eligible_players = Player
   end
 
   # POST /teams

@@ -1,6 +1,7 @@
 <% if @team_player.errors.any? %>
+  var errorMessage= '<%= escape_javascript("Error Adding player to roster: Please make sure the player does not already exist") %>' ;
+  $('#flash').html(errorMessage).show().delay(3000).fadeOut();
 <% else %>
   var newPlayer = '<%= escape_javascript("Added: #{@team_player.user.email}")%>';
-  console.log(newPlayer);
   $("#team-players").append("<li>" + newPlayer + "</li>");
 <% end %>
