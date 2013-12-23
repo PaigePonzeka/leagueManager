@@ -15,7 +15,7 @@
     %ul#team-players
       -@players.each do |p|
         %li
-          =name(p.user)
+          %span.team-player-name=name(p.user)
           = link_to "", p, method: :delete,
                                      data: { confirm: "You sure?" }, :class=> "icon-remove"
   .actions

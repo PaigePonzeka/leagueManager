@@ -5,11 +5,11 @@
       = username
   .column.pull-left.sidebar
     - # TODO put in check for upcoming game statuses
-    = render :partial => "shared/game-status"  
     = render :partial => "shared/standings" 
     = render :partial => "shared/events"     
 
   .column.pull-left.main-column
+    = render :partial => "shared/game-status"  
     - if !signed_in?
       %h1 
         Welcome User

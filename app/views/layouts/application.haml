@@ -5,10 +5,10 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
+  %body{:id => "#{params[:controller]}"}
     = render :partial => "layouts/nav"
     -flash.each do |name, msg| 
-      = content_tag :div, msg, class: name
+      .alert= content_tag :div, msg, class: name
     .container
       = yield
     .container

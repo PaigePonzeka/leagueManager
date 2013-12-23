@@ -110,7 +110,11 @@ class ApplicationController < ActionController::Base
     teams.each do |team, value|
       puts team
       total_games = value[:win] + value[:loss] + value[:tie]
-      win_percentage = value[:win]/total_games.to_f
+      if total_games > 0  
+        win_percentage = value[:win]/total_games.to_f
+      else
+        win_percentage = 0
+      end 
       value[:percentage] = win_percentage
     end
     teams_sorted = teams.sort_by{ |k, v| v[:point]}.reverse

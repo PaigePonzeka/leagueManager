@@ -1,4 +1,6 @@
 <% if @team_player.errors.any? %>
 <% else %>
-  $("#team-players").append('<%= escape_javascript("<li>Added: #{@team_player.user.email}</li>")%>');
+  var newPlayer = '<%= escape_javascript("Added: #{@team_player.user.email}")%>';
+  console.log(newPlayer);
+  $("#team-players").append("<li>" + newPlayer + "</li>");
 <% end %>
