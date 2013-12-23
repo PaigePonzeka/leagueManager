@@ -6,3 +6,4 @@
       %td= link_to "#{name(p.user)}", p.user
       - if user_is_team_manager(@team) || is_admin?
         %td= link_to "", "#", { :method => :delete, :confirm => "Remove Player #{@team.name}'s  from roster?", :class=> 'js-remove-player icon-remove', :title => "Remove player from roster", 'data-team' => @team.id, 'data-player' =>p.user.id}
+  

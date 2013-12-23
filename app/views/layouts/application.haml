@@ -3,7 +3,6 @@
   %head
     %title Big Apple Softball
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
   %body{:id => "#{params[:controller]}"}
     #flash.alert.alert-error
@@ -14,3 +13,4 @@
       = yield
     .container
       = render :partial => "layouts/footer"
+    = javascript_include_tag "application"

@@ -39,10 +39,11 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @team = Team.find(params[:id])
-    @players = TeamPlayer.where(:team_id => params[:id])
+    @players = TeamPlayer.joins(:user).where(:team_id => params[:id]).order('last_name ASC')
     #TODO eligible players will eventually be players that are set as active (i.e. have paid their fees)
-    # current its players who are currently not already on the roster (can't add a player twice TODO check for this in the backend too)
-    #@eligible_players = Player
+    # current its players who are currently not already on the roster (can't add a player twice)
+    @eligible_players = User.joins(:team_players).where('team_id not in (?)',params[:id]).order('last_name ASC')
+    puts @eligible_players
   end
 
   # POST /teams

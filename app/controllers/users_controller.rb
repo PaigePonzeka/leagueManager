@@ -27,6 +27,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @users = User.joins(:team_players).where('team_id not in (?)',params[:id]).order('last_name ASC')
+    respond_to do |format|
+      format.html
+      format.json { render :json => @users }
+    end
+  end
+
   
   # GET /players/new
   # GET /players/new.json

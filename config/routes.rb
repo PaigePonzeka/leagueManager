@@ -34,6 +34,7 @@ match '/help',    to: 'static_pages#help',    via: 'get'
 #match '/about',   to: 'static_pages#about',   via: 'get'
 #match '/contact', to: 'static_pages#contact', via: 'get'
 match '/signin',  to: 'sessions#new',         via: 'get'
+match '/users_search',  to: 'users#search',         via: 'get'
 match '/signout', to: 'sessions#destroy',     via: 'delete'
 match "/get_teams_by_division" => "teams#get_teams_by_division"
 match "/schedule/:team_id", to: 'games#schedule', via: 'get'

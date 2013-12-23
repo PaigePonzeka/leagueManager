@@ -17,6 +17,8 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.2.2'
   gem 'haml-rails'
   gem "compass-rails"
+  #gem 'ajax-chosen-rails'
+  #gem 'chosen-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

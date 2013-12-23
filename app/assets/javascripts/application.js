@@ -16,8 +16,7 @@
 //=require jquery-ui-timepicker-addon
 //= require bootstrap
 //= require tinymce/tinymce.min
-//= require chosen_v1.0.0/chosen.jquery.min.js
-//= require ajax-chosen
+////= require ajax-chosen-jquery
 //= require_tree .
 
 //Javascripts (https://github.com/thomas-mcdonald/bootstrap-sass)

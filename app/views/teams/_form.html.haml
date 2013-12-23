@@ -18,6 +18,7 @@
           %span.team-player-name=name(p.user)
           = link_to "", p, method: :delete,
                                      data: { confirm: "You sure?" }, :class=> "icon-remove"
+      
   .actions
     = f.submit
 
@@ -32,5 +33,3 @@
   = text_field_tag :search, params[:search], :placeholder => "Enter Player Email Here" 
   = submit_tag "Find Player", :name => nil, :class => 'btn'
 
-
-%select#roster-input
