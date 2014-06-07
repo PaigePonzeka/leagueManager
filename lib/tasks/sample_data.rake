@@ -120,9 +120,7 @@ namespace :db do
         teamsD = TeamDivision.where(:division_id => division.id)
         season_start = season.start_date
         game_start = season_start
-        teamsD.each do |team_home|
-          generate_schedule(teamsD, fields, season, division.id)
-        end
+        generate_schedule(teamsD, fields, season, division.id)
       end
     end
   end
@@ -144,6 +142,10 @@ namespace :db do
       endPoint = teams.length - 1
       startTeam = teams[1] 
       currentTeam = "";
+      # if there is an uneven amount of teams create a blank one
+      if teams.length%2 > 0 
+        teams.push("-")
+      end
 
       # when you get back to where we started, stop generating schedule (can update this later to add another set of games)
       while !currentTeam.eql?(startTeam);
@@ -157,7 +159,10 @@ namespace :db do
                 home_score = rand(0..20)
                 away_score = rand(0..20)
               end
-              generate_game(teams[endPoint-startPoint], teams[startPoint], field, season, division_id, home_score, away_score, game_start)
+              ## only generate a game if the team doesn't have a bye week
+              if(!(teams[endPoint-startPoint].eql?("-") || teams[startPoint].eql?("-")))
+                generate_game(teams[endPoint-startPoint], teams[startPoint], field, season, division_id, home_score, away_score, game_start)
+              end
               
           startPoint+=1
         end

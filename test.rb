@@ -1,5 +1,13 @@
-teams = ["team1", "team2", "team3", "team4", "team5", "team6"]
+teams = ["team1", "team2", "team3", "team4", "team5"]
 games = Array.new
+
+#if there is an uneven amount of teams add a blank team - bye week
+
+if teams.length%2 > 0 
+  teams.push("-")
+end
+
+puts teams
 
 startPoint = 0
 endPoint = teams.length - 1
