@@ -12,11 +12,11 @@ namespace :db do
     }
 
     divisions = ["Division 1", "Division 2", "Division 3", "Division 4", "Division 5"]
-    parks = ["Randall's Island", "Red Hook Park", "Hudson River Park", "East River Park"]
+    parks = ["Park 1", "Park 2", "Park 3", "Park 4"]
     seasons = [{name: "Fall 2012", start_date: DateTime.new(2012, 9, 12, 10, 30), end_date: DateTime.new(2012, 11, 6, 10, 30)},
                     {name: "Spring 2013", start_date: DateTime.new(2013, 5, 8, 9, 30), end_date: DateTime.new(2013, 8, 14, 9, 00)},
                     {name: "Fall 2013", start_date: DateTime.new(2013, 10, 1, 13, 0), end_date: DateTime.new(2013, 11, 4, 12, 30)},
-                    {name: "Spring 2014", start_date: DateTime.new(2014, 5, 3, 14, 0), end_date: DateTime.new(2014, 8, 9, 14, 00)}]
+                    {name: "Spring 2014", start_date: DateTime.new(2014, 6, 25, 14, 0), end_date: DateTime.new(2014, 8, 9, 14, 00)}]
     
     generate_default_users
     genDivisions = generate_divisions(divisions, teams_by_division)

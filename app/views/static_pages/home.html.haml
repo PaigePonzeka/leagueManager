@@ -9,11 +9,37 @@
     = render :partial => "shared/events"     
 
   .column.pull-left.main-column
-    = render :partial => "shared/game-status"  
     - if !signed_in?
       %h1 
         Welcome User
         =link_to "Login", signin_path, :class => "btn btn-primary"
+      Feel Free to Log into these user accounts
+      %table.table.table-stripes
+        %thead
+          %tr
+            %td Permissions
+            %td Email
+            %td password
+        %tbody
+          %tr
+            %td League Administrator
+            %td league+admin@gmail.com
+            %td 123456
+          %tr
+            %td Division Adminstrator
+            %td rep+division_1@gmail.com"
+            %td 123456
+          %tr
+            %td Team Manager
+            %td manager+meata@gmail.com"
+            %td 123456
+          %tr
+            %td Player
+            %td league+player@gmail.com
+            %td 123456
+    -else
+      = render :partial => "shared/game-status"  
+
       - #%small
       - #  New User? 
       -#  =link_to "Sign up", new_user_path
